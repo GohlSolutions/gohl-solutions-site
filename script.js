@@ -1,6 +1,6 @@
 const contactTargets = {
   email: "contato@gohlsolutions.com.br",
-  whatsapp: "5565999999999",
+  whatsapp: "5565992517246",
 };
 
 const menuToggle = document.querySelector(".menu-toggle");
