@@ -8,8 +8,27 @@ const mainNav = document.querySelector(".main-nav");
 const year = document.querySelector("#year");
 const contactForm = document.querySelector("#contact-form");
 const preview = document.querySelector("#message-preview");
+const logoLockup = document.querySelector(".logo-lockup");
+const logoImage = document.querySelector(".logo-image");
 
 year.textContent = new Date().getFullYear();
+
+if (logoLockup && logoImage) {
+  if (logoImage.complete && logoImage.naturalWidth === 0) {
+    logoLockup.classList.add("logo-missing");
+  } else if (!logoImage.complete) {
+    logoLockup.classList.add("logo-loading");
+  }
+
+  logoImage.addEventListener("load", () => {
+    logoLockup.classList.remove("logo-loading", "logo-missing");
+  });
+
+  logoImage.addEventListener("error", () => {
+    logoLockup.classList.remove("logo-loading");
+    logoLockup.classList.add("logo-missing");
+  });
+}
 
 menuToggle.addEventListener("click", () => {
   const isOpen = mainNav.classList.toggle("open");

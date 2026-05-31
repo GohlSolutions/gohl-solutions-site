@@ -55,67 +55,86 @@
         <div class="hero-content">
           <p class="eyebrow">Tecnologia que conecta</p>
           <div class="logo-lockup" aria-label="Göhl Solutions">
-            <svg class="gohl-symbol" viewBox="0 0 640 410" role="img" aria-label="Símbolo Göhl Solutions">
+            <h1 class="sr-only">Göhl Solutions</h1>
+            <img class="logo-image" src="assets/gohl-logo.png" alt="Göhl Solutions" />
+            <svg class="gohl-logo logo-fallback" viewBox="0 0 940 680" role="img" aria-label="Göhl Solutions">
               <defs>
-                <linearGradient id="gohlBlue" x1="112" y1="72" x2="540" y2="196" gradientUnits="userSpaceOnUse">
-                  <stop offset="0" stop-color="#0048ff" />
-                  <stop offset="0.52" stop-color="#008cff" />
-                  <stop offset="1" stop-color="#28e8ff" />
+                <linearGradient id="logoBlueMain" x1="145" y1="70" x2="760" y2="235" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#003cff" />
+                  <stop offset="0.43" stop-color="#0077ff" />
+                  <stop offset="1" stop-color="#22e5ff" />
                 </linearGradient>
-                <linearGradient id="gohlBlueDark" x1="160" y1="120" x2="486" y2="286" gradientUnits="userSpaceOnUse">
-                  <stop offset="0" stop-color="#0034df" />
-                  <stop offset="0.52" stop-color="#005bff" />
-                  <stop offset="1" stop-color="#08cfff" />
+                <linearGradient id="logoBlueBar" x1="345" y1="238" x2="760" y2="310" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#0033ff" />
+                  <stop offset="0.56" stop-color="#006dff" />
+                  <stop offset="1" stop-color="#26ddff" />
                 </linearGradient>
-                <linearGradient id="gohlSilver" x1="184" y1="214" x2="488" y2="338" gradientUnits="userSpaceOnUse">
-                  <stop offset="0" stop-color="#f9fbff" />
-                  <stop offset="0.35" stop-color="#bfc8d2" />
-                  <stop offset="0.62" stop-color="#ffffff" />
-                  <stop offset="1" stop-color="#71808d" />
+                <linearGradient id="logoSilver" x1="150" y1="318" x2="740" y2="545" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#ffffff" />
+                  <stop offset="0.16" stop-color="#aeb8c3" />
+                  <stop offset="0.38" stop-color="#f6fbff" />
+                  <stop offset="0.64" stop-color="#8f9ca9" />
+                  <stop offset="0.84" stop-color="#ffffff" />
+                  <stop offset="1" stop-color="#566472" />
                 </linearGradient>
-                <filter id="gohlGlow" x="-20%" y="-25%" width="140%" height="150%">
-                  <feDropShadow dx="0" dy="0" stdDeviation="9" flood-color="#0078ff" flood-opacity="0.9" />
-                  <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#000000" flood-opacity="0.55" />
+                <linearGradient id="logoTextSilver" x1="230" y1="455" x2="710" y2="555" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#ffffff" />
+                  <stop offset="0.4" stop-color="#9aa7b4" />
+                  <stop offset="0.66" stop-color="#ffffff" />
+                  <stop offset="1" stop-color="#687787" />
+                </linearGradient>
+                <filter id="logoOuterGlow" x="-18%" y="-20%" width="136%" height="142%">
+                  <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#0078ff" flood-opacity="0.95" />
+                  <feDropShadow dx="0" dy="16" stdDeviation="10" flood-color="#000000" flood-opacity="0.72" />
                 </filter>
-                <filter id="gohlBevel" x="-10%" y="-10%" width="120%" height="125%">
-                  <feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#ffffff" flood-opacity="0.28" />
-                  <feDropShadow dx="0" dy="8" stdDeviation="5" flood-color="#000000" flood-opacity="0.48" />
+                <filter id="logoTextGlow" x="-12%" y="-30%" width="124%" height="160%">
+                  <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#0078ff" flood-opacity="0.72" />
+                  <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#000000" flood-opacity="0.65" />
                 </filter>
               </defs>
 
-              <g filter="url(#gohlGlow)">
+              <g class="logo-circuit" aria-hidden="true">
+                <path d="M80 350 H238 L300 312" />
+                <path d="M700 225 H805 L848 180" />
+                <path d="M118 440 H310" />
+                <path d="M644 480 H800" />
+                <path d="M186 288 V210 H240" />
+                <path d="M760 352 H846 V298" />
+                <circle cx="300" cy="312" r="6" />
+                <circle cx="848" cy="180" r="6" />
+                <circle cx="186" cy="210" r="5" />
+                <circle cx="760" cy="352" r="5" />
+              </g>
+
+              <g class="logo-emblem" filter="url(#logoOuterGlow)">
                 <path
-                  class="logo-piece"
-                  fill="url(#gohlBlue)"
-                  d="M154 250 C86 225 59 168 78 114 C99 55 161 25 242 25 H558 L514 84 H244 C190 84 154 101 131 136 C113 164 111 193 127 218 C139 237 158 250 186 256 H284 L244 316 H180 C170 294 162 272 154 250 Z"
+                  class="emblem-blue-shell"
+                  d="M285 55 H760 L700 133 H392 C310 133 257 169 236 228 C214 291 249 344 326 354 H444 L390 428 H312 C189 428 111 352 128 246 C148 125 242 55 378 55 Z"
                 />
                 <path
-                  class="logo-highlight"
-                  d="M140 133 C165 77 206 61 276 61 H520"
+                  class="emblem-bg-cut"
+                  d="M384 154 H654 L610 212 H407 C354 212 319 232 307 270 C294 311 322 338 379 338 H454 L416 392 H326 C241 392 190 329 211 252 C232 188 292 154 384 154 Z"
                 />
+                <path class="emblem-blue-bar" d="M374 238 H745 L686 311 H344 L363 260 C366 248 369 241 374 238 Z" />
+                <path class="emblem-blue-edge" d="M300 82 C232 100 184 155 169 237 C152 326 210 399 309 402" />
+                <path class="emblem-blue-shine" d="M346 88 H720" />
+
                 <path
-                  class="logo-piece"
-                  fill="url(#gohlBlueDark)"
-                  d="M246 160 H560 L515 216 H220 L232 184 C235 173 239 165 246 160 Z"
+                  class="emblem-silver"
+                  d="M405 290 H575 C650 290 695 326 684 374 C672 424 610 448 520 448 H154"
                 />
-                <path
-                  class="logo-piece"
-                  fill="url(#gohlSilver)"
-                  filter="url(#gohlBevel)"
-                  d="M278 235 H437 C488 235 525 266 525 309 C525 359 479 388 411 388 H92 L136 327 H405 C435 327 453 319 458 302 C464 282 445 267 411 267 H239 L278 235 Z"
-                />
-                <path
-                  class="logo-shadow-line"
-                  d="M146 327 H405 C435 327 453 319 458 302"
-                />
-                <path
-                  class="logo-cut"
-                  d="M272 266 H413 C445 266 464 282 458 302 C454 318 435 327 405 327 H136"
-                />
+                <path class="emblem-silver-shadow" d="M410 330 H558 C600 330 625 347 620 371 C615 398 582 412 526 412 H190" />
+                <path class="emblem-silver-shine" d="M424 272 H570 C660 272 712 320 696 378" />
+              </g>
+
+              <g class="logo-wordmark" filter="url(#logoTextGlow)">
+                <text class="brand-word-shadow" x="470" y="588" text-anchor="middle">GÖHL</text>
+                <text class="brand-word" x="470" y="588" text-anchor="middle">GÖHL</text>
+                <text class="brand-subline" x="470" y="650" text-anchor="middle">SOLUTIONS</text>
+                <line class="brand-line" x1="244" y1="635" x2="312" y2="635" />
+                <line class="brand-line" x1="628" y1="635" x2="696" y2="635" />
               </g>
             </svg>
-            <h1>GÖHL</h1>
-            <p>Solutions</p>
           </div>
           <p class="hero-copy">
             Soluções modernas para sites, aplicativos, sistemas, automação, suporte técnico e presença
