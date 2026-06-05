@@ -13,8 +13,8 @@
   <body>
     <header class="site-header">
       <a class="brand" href="#top" aria-label="Göhl Solutions - início">
-        <span class="brand-mark">GS</span>
-        <span>
+        <img class="brand-logo" src="assets/gohl-logo.png" alt="" />
+        <span class="brand-text">
           <strong>GÖHL</strong>
           <small>Solutions</small>
         </span>
@@ -32,6 +32,12 @@
         <a href="#pagamentos">Pagamentos</a>
         <a href="#contato">Contratar</a>
       </nav>
+
+      <div class="header-actions">
+        <button class="button ghost login-open" type="button" data-auth-mode="login">Entrar</button>
+        <button class="button primary login-open" type="button" data-auth-mode="register">Criar conta</button>
+        <button class="button ghost logout-button" type="button" hidden>Sair</button>
+      </div>
     </header>
 
     <main id="top">
@@ -39,16 +45,8 @@
         <div class="hero-grid" aria-hidden="true"></div>
         <div class="hero-content">
           <p class="eyebrow">Göhl Ledger AI + Portal de Serviços</p>
-          <div class="logo-lockup" aria-label="Göhl Solutions">
-            <h1 class="sr-only">Göhl Solutions</h1>
-            <img class="logo-image" src="assets/gohl-logo.png" alt="Göhl Solutions" />
-            <div class="logo-fallback" aria-hidden="true">
-              <span class="fallback-symbol">GS</span>
-              <strong>GÖHL</strong>
-              <small>Solutions</small>
-            </div>
-          </div>
-          <h2>Uma plataforma profissional para vender, cobrar e acompanhar projetos digitais.</h2>
+          <h1>Göhl Solutions</h1>
+          <h2>Portal seguro para contratar serviços digitais.</h2>
           <p class="hero-copy">
             Centralize assinaturas do Göhl Ledger AI, contratação de serviços, pagamentos online,
             projetos em andamento, arquivos, notificações e relacionamento com clientes em um portal
@@ -56,23 +54,23 @@
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#servicos" data-scroll-target="servicos">Contratar serviço</a>
-            <a class="button secondary" href="#plataforma" data-scroll-target="plataforma">Ver plataforma</a>
+            <button class="button secondary login-open" type="button" data-auth-mode="login">Entrar na área do cliente</button>
           </div>
         </div>
 
         <aside class="dashboard-preview" aria-label="Prévia da plataforma">
           <div class="preview-top">
             <span>Dashboard</span>
-            <strong>Cliente ativo</strong>
+            <strong class="session-label">Aguardando login</strong>
           </div>
           <div class="metric-row">
             <div>
-              <span>Plano</span>
-              <strong>Ledger AI Pro</strong>
+              <span>Conta</span>
+              <strong class="client-name">Visitante</strong>
             </div>
             <div>
-              <span>Assinatura</span>
-              <strong class="status-ok">Ativa</strong>
+              <span>Acesso</span>
+              <strong class="status-ok auth-status">Seguro</strong>
             </div>
           </div>
           <div class="progress-list">
@@ -81,8 +79,8 @@
             <span style="--value: 92%">Arquivos revisados</span>
           </div>
           <div class="preview-footer">
-            <span>Mercado Pago</span>
-            <strong>PIX, cartão, boleto e assinatura</strong>
+            <span>Portal protegido</span>
+            <strong>Login, contratos, pagamentos e projetos</strong>
           </div>
         </aside>
       </section>
@@ -458,14 +456,71 @@
         </div>
       </section>
 
-      <section class="section workflow-section" id="cliente">
+      <section class="section client-section" id="cliente">
         <div class="section-heading">
           <p class="eyebrow">Área do cliente</p>
-          <h2>Acompanhamento completo depois da contratação.</h2>
+          <h2>Um portal com login para aumentar confiança na contratação.</h2>
           <p>
-            O cliente visualiza plano contratado, assinatura, pagamentos, projetos, arquivos, notificações
-            e configurações de conta em um painel centralizado.
+            O cliente entra com e-mail e senha, acompanha solicitações, vê pagamentos, status de assinatura,
+            arquivos e andamento do projeto em um painel organizado.
           </p>
+        </div>
+
+        <div class="client-shell">
+          <aside class="client-login-panel">
+            <span class="secure-badge">Acesso protegido</span>
+            <h3>Entrar na conta</h3>
+            <p>
+              Mostre ao cliente que ele terá um ambiente próprio para acompanhar tudo depois da contratação.
+            </p>
+            <div class="client-panel-actions">
+              <button class="button primary login-open" type="button" data-auth-mode="login">Entrar agora</button>
+              <button class="button secondary login-open" type="button" data-auth-mode="register">Criar conta</button>
+            </div>
+          </aside>
+
+          <div class="client-dashboard" aria-label="Painel do cliente">
+            <div class="dashboard-header">
+              <div>
+                <span>Portal do cliente</span>
+                <strong class="portal-name">Faça login para visualizar</strong>
+              </div>
+              <span class="pill auth-pill">Sessão protegida</span>
+            </div>
+
+            <div class="dashboard-cards">
+              <article>
+                <span>Plano contratado</span>
+                <strong>Ledger AI Pro</strong>
+                <small class="status-ok">Assinatura ativa</small>
+              </article>
+              <article>
+                <span>Projeto atual</span>
+                <strong>Site empresarial</strong>
+                <small>Em desenvolvimento</small>
+              </article>
+              <article>
+                <span>Financeiro</span>
+                <strong>50% pago</strong>
+                <small>Aguardando etapa final</small>
+              </article>
+            </div>
+
+            <div class="activity-list">
+              <div>
+                <span>Hoje</span>
+                <p>Proposta registrada e pronta para pagamento inicial.</p>
+              </div>
+              <div>
+                <span>Projeto</span>
+                <p>Arquivos, revisões e prazos centralizados no painel.</p>
+              </div>
+              <div>
+                <span>Segurança</span>
+                <p>Login, confirmação de e-mail e recuperação de acesso planejados para o backend.</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="workflow-grid">
@@ -665,6 +720,83 @@
         </aside>
       </section>
     </main>
+
+    <div class="auth-modal" id="auth-modal" aria-hidden="true">
+      <div class="auth-backdrop" data-auth-close></div>
+      <section class="auth-dialog" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+        <button class="auth-close" type="button" aria-label="Fechar login" data-auth-close>×</button>
+
+        <div class="auth-brand">
+          <img class="auth-logo" src="assets/gohl-logo.png" alt="Göhl Solutions" />
+          <div class="auth-logo-fallback">
+            <span>GS</span>
+            <strong>GÖHL</strong>
+          </div>
+          <p class="eyebrow">Portal seguro</p>
+          <h2 id="auth-title">Acesse sua área do cliente.</h2>
+          <p>
+            Entre para acompanhar propostas, pagamentos, arquivos, assinaturas e andamento dos projetos contratados.
+          </p>
+        </div>
+
+        <div class="auth-panel">
+          <div class="auth-tabs" role="tablist" aria-label="Acesso do cliente">
+            <button class="auth-tab active" type="button" data-auth-tab="login">Entrar</button>
+            <button class="auth-tab" type="button" data-auth-tab="register">Criar conta</button>
+          </div>
+
+          <form class="auth-form active" id="login-form" data-auth-form="login">
+            <label>
+              <span>E-mail</span>
+              <input name="email" type="email" autocomplete="email" placeholder="cliente@email.com" required />
+            </label>
+            <label>
+              <span>Senha</span>
+              <input name="password" type="password" autocomplete="current-password" placeholder="Sua senha" required />
+            </label>
+            <label class="check-row">
+              <input name="remember" type="checkbox" checked />
+              <span>Lembrar este dispositivo</span>
+            </label>
+            <button class="button primary" type="submit">Entrar no portal</button>
+            <button class="text-button" type="button" data-auth-tab="recover">Esqueci minha senha</button>
+          </form>
+
+          <form class="auth-form" id="register-form" data-auth-form="register">
+            <label>
+              <span>Nome completo</span>
+              <input name="name" type="text" autocomplete="name" placeholder="Seu nome" required />
+            </label>
+            <label>
+              <span>E-mail</span>
+              <input name="email" type="email" autocomplete="email" placeholder="cliente@email.com" required />
+            </label>
+            <label>
+              <span>Telefone</span>
+              <input name="phone" type="tel" autocomplete="tel" placeholder="(65) 99999-9999" required />
+            </label>
+            <label>
+              <span>Senha</span>
+              <input name="password" type="password" autocomplete="new-password" placeholder="Crie uma senha" required />
+            </label>
+            <button class="button primary" type="submit">Criar conta segura</button>
+          </form>
+
+          <form class="auth-form" id="recover-form" data-auth-form="recover">
+            <label>
+              <span>E-mail cadastrado</span>
+              <input name="email" type="email" autocomplete="email" placeholder="cliente@email.com" required />
+            </label>
+            <button class="button primary" type="submit">Enviar recuperação</button>
+            <button class="text-button" type="button" data-auth-tab="login">Voltar para login</button>
+          </form>
+
+          <p class="auth-note" id="auth-note">
+            Demonstração visual: a autenticação real com senha criptografada, e-mail de confirmação e JWT entra na etapa backend.
+          </p>
+        </div>
+      </section>
+    </div>
 
     <footer class="site-footer">
       <p>© <span id="year"></span> Göhl Solutions. Tecnologia que conecta e gera resultados.</p>
