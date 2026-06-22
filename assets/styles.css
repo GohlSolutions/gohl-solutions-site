@@ -228,3 +228,19 @@ img{max-width:100%;display:block}
     padding:18px;
   }
 }
+
+
+/* Botões de contato: Gmail Web e WhatsApp */
+.form-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:4px;
+}
+.btn.whatsapp{
+  background:linear-gradient(135deg,#25d366,#0fae55);
+  color:#03150a;
+  box-shadow:0 12px 28px rgba(37,211,102,.18);
+}
+.btn.whatsapp:hover{transform:translateY(-2px)}
+@media(max-width:560px){.form-actions{display:grid}.form-actions .btn{width:100%}}

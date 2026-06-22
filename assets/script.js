@@ -1,6 +1,13 @@
-
 const $ = (sel, root=document) => root.querySelector(sel);
 const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+// CONTATOS OFICIAIS DA GÖHL SOLUTIONS
+// O Gmail abaixo abre direto no Gmail Web, sem chamar o app de e-mail do Windows.
+const GOHL_EMAIL = 'solutionsgohl@gmail.com';
+
+// IMPORTANTE: troque pelo WhatsApp oficial da empresa, só números com DDI e DDD.
+// Exemplo Cuiabá: 5565999999999
+const GOHL_WHATSAPP = '5565999999999';
 
 const menuBtn = $('.menu-btn');
 const links = $('.links');
@@ -37,30 +44,87 @@ if (serviceSelect && budgetHint) {
   serviceSelect.addEventListener('change', updateBudget); updateBudget();
 }
 
+function getLeadData(){
+  const form = $('#leadForm');
+  if (!form) return {};
+  return Object.fromEntries(new FormData(form).entries());
+}
+
+function buildProposalText(data){
+  const name = data.name || 'Cliente';
+  const service = data.service || 'Serviço não informado';
+  const phone = data.phone || 'Não informado';
+  const email = data.email || 'Não informado';
+  const message = data.message || 'Sem detalhes adicionais.';
+
+  return `Olá, sou ${name}.\n\nQuero solicitar uma proposta/orçamento com a Göhl Solutions.\n\nServiço desejado: ${service}\nWhatsApp do cliente: ${phone}\nE-mail do cliente: ${email}\n\nDetalhes do projeto:\n${message}`;
+}
+
+function gmailComposeUrl(data){
+  const subject = `Orçamento Göhl Solutions - ${data.service || 'Solicitação'}`;
+  const body = buildProposalText(data);
+  return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(GOHL_EMAIL)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function whatsappUrl(data){
+  const body = buildProposalText(data);
+  return `https://wa.me/${GOHL_WHATSAPP}?text=${encodeURIComponent(body)}`;
+}
+
+function updateQuickContactLinks(){
+  $$('[data-gmail-link]').forEach(link => {
+    link.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(GOHL_EMAIL)}&su=${encodeURIComponent('Contato pelo site Göhl Solutions')}`;
+    link.target = '_blank';
+    link.rel = 'noopener';
+  });
+  $$('[data-whatsapp-link]').forEach(link => {
+    link.href = `https://wa.me/${GOHL_WHATSAPP}?text=${encodeURIComponent('Olá, tenho interesse em uma proposta da Göhl Solutions.')}`;
+    link.target = '_blank';
+    link.rel = 'noopener';
+  });
+}
+updateQuickContactLinks();
+
 const leadForm = $('#leadForm');
 if (leadForm) {
-  leadForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(leadForm).entries());
-    data.createdAt = new Date().toISOString();
-    const msg = `Olá, sou ${data.name}.%0A%0AQuero orçamento para: ${data.service}.%0AContato: ${data.phone || data.email || 'não informado'}.%0A%0AMensagem: ${data.message}`;
-    const status = $('#formStatus');
+  const status = $('#formStatus');
+  const whatsappButton = $('#sendWhatsapp');
+  const gmailButton = $('#sendGmail');
+
+  async function saveLeadIfServerIsAvailable(data){
     try {
-      const res = await fetch('/api/contact', {
-        method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)
+      await fetch('/api/contact', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({...data, createdAt: new Date().toISOString()})
       });
-      if (res.ok) {
-        status.textContent = 'Pedido recebido no painel administrativo. Também abrimos uma opção de contato rápido.';
-        leadForm.reset();
-        setTimeout(() => window.open(`mailto:solutionsgohl@gmail.com?subject=Orçamento Göhl Solutions&body=${msg.replaceAll('%0A','%0D%0A')}`, '_blank'), 500);
-        return;
-      }
-      throw new Error('Servidor indisponível');
     } catch (err) {
-      status.textContent = 'Site aberto sem servidor: use o e-mail ou WhatsApp para enviar o orçamento.';
-      window.open(`mailto:solutionsgohl@gmail.com?subject=Orçamento Göhl Solutions&body=${msg.replaceAll('%0A','%0D%0A')}`, '_blank');
+      // Site estático no GitHub/Vercel não tem backend local. Ignora e segue com Gmail/WhatsApp.
     }
+  }
+
+  async function sendByGmail(){
+    if (!leadForm.reportValidity()) return;
+    const data = getLeadData();
+    await saveLeadIfServerIsAvailable(data);
+    if (status) status.textContent = 'Abrindo Gmail na web com a proposta preenchida.';
+    window.open(gmailComposeUrl(data), '_blank', 'noopener');
+  }
+
+  async function sendByWhatsApp(){
+    if (!leadForm.reportValidity()) return;
+    const data = getLeadData();
+    await saveLeadIfServerIsAvailable(data);
+    if (status) status.textContent = 'Abrindo WhatsApp com a proposta preenchida.';
+    window.open(whatsappUrl(data), '_blank', 'noopener');
+  }
+
+  leadForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    sendByGmail();
   });
+  if (gmailButton) gmailButton.addEventListener('click', sendByGmail);
+  if (whatsappButton) whatsappButton.addEventListener('click', sendByWhatsApp);
 }
 
 const year = $('#year'); if (year) year.textContent = new Date().getFullYear();
