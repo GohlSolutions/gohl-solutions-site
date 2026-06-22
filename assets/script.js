@@ -7,7 +7,7 @@ const GOHL_EMAIL = 'solutionsgohl@gmail.com';
 
 // IMPORTANTE: troque pelo WhatsApp oficial da empresa, só números com DDI e DDD.
 // Exemplo Cuiabá: 5565999999999
-const GOHL_WHATSAPP = '5565999999999';
+const GOHL_WHATSAPP = '5565992517246';
 
 const menuBtn = $('.menu-btn');
 const links = $('.links');
