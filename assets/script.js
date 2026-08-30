@@ -30,6 +30,7 @@ const budgets = {
   'Landing Page': 'A partir de R$ 250. O orçamento final depende do escopo.',
   'Site Profissional': 'A partir de R$ 350. O orçamento final depende do escopo.',
   'Aplicativo / Sistema': 'A partir de R$ 1.500. O orçamento final depende do escopo.',
+  'Göhl Serralheria SaaS': 'Plataforma em desenvolvimento. Planos mensal e anual, valores e data do piloto ainda estão em preparação.',
   'Göhl Email Bot Pro': 'Mensal: R$ 49,90/mês por PC. Vitalício lançamento: R$ 297/PC. Vitalício oficial: R$ 497/PC. Pacote empresa: R$ 797 a R$ 997.',
   'Organizador de Arquivos Pro': 'R$ 79,90/mês por PC ou R$ 397 vitalício por PC. Pacote empresa sob consulta.',
   'Pacote Contábil': 'Sob consulta. Valor depende da quantidade de empresas, PCs, pastas e rotina mensal.',
@@ -39,9 +40,17 @@ const budgets = {
   'Outro': 'Descreva a necessidade para montarmos o orçamento.'
 };
 if (serviceSelect && budgetHint) {
+  const serralheriaService = 'Göhl Serralheria SaaS';
+  const alreadyListed = Array.from(serviceSelect.options).some(option => option.value === serralheriaService);
+  if (!alreadyListed) serviceSelect.add(new Option(serralheriaService, serralheriaService), 3);
+
   function updateBudget(){
     const v = serviceSelect.value;
     budgetHint.textContent = budgets[v] || 'Descreva a necessidade para montarmos o orçamento.';
+  }
+  const requestedService = new URLSearchParams(window.location.search).get('service');
+  if (requestedService && Array.from(serviceSelect.options).some(option => option.value === requestedService)) {
+    serviceSelect.value = requestedService;
   }
   serviceSelect.addEventListener('change', updateBudget); updateBudget();
 }
